@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connections - Word Play Edition</title>
+    <title>Happy Birthday <\3</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;700&display=swap');
@@ -58,7 +58,7 @@
 <body class="flex flex-col items-center p-4 min-h-screen">
 
     <header class="w-full max-w-md border-b pb-4 mb-6 text-center">
-        <h1 class="text-3xl font-bold tracking-tight">Connections</h1>
+        <h1 class="text-3xl font-bold tracking-tight">Connections - Dania Birthday Edition</h1>
         <p class="text-gray-600 mt-2">Create four groups of four!</p>
     </header>
 
@@ -73,13 +73,13 @@
 
         <!-- Mistakes Counter -->
         <div class="flex justify-center items-center gap-2 mt-4 text-lg">
-            <span>Mistakes remaining:</span>
-            <div id="mistake-dots" class="flex gap-2">
+            <span>Mistakes remaining: Unlimited, it's your birthday! (and you're cute)</span>
+            <!-- <div id="mistake-dots" class="flex gap-2">
                 <div class="w-3 h-3 rounded-full bg-gray-700"></div>
                 <div class="w-3 h-3 rounded-full bg-gray-700"></div>
                 <div class="w-3 h-3 rounded-full bg-gray-700"></div>
                 <div class="w-3 h-3 rounded-full bg-gray-700"></div>
-            </div>
+            </div> -->
         </div>
 
         <!-- Controls -->
@@ -206,7 +206,7 @@
         }
 
         function handleFailure(oneAway) {
-            mistakesRemaining--;
+            // mistakesRemaining--;
             updateMistakeDots();
             
             gridEl.classList.add('shake');
