@@ -90,8 +90,7 @@
             </button>
         </div>
 
-        <div id="grid" class="grid grid-cols-4 gap-2">
-            </div>
+        <div id="grid" class="grid grid-cols-4 gap-2"></div>
 
         <div class="flex justify-center items-center gap-2 mt-4 text-lg">
             <span>Mistakes remaining: Unlimited, it's your birthday!</span>
@@ -214,7 +213,6 @@
         }
 
         function triggerWin() {
-            // Confetti Blast!
             confetti({
                 particleCount: 150,
                 spread: 70,
@@ -248,11 +246,6 @@
             selectedWords = [];
             renderGrid();
         }
-
-        // Mobile-friendly tooltip trigger
-        document.getElementById('bday-text').addEventListener('click', function() {
-            alert(this.title);
-        });
 
         init();
     </script>
