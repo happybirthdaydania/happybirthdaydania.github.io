@@ -3,260 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday <\3</title>
+    <title>A Note for You <3</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;700&display=swap');
-        
         body {
-            font-family: 'Libre Franklin', sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background-color: #efefe6; /* Connections background color */
+            color: #1a1a1a;
+        }
+
+        .note-card {
             background-color: #ffffff;
-            touch-action: manipulation;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            max-width: 500px;
+            width: 90%;
+            padding: 2.5rem;
+            margin-top: 10vh;
         }
 
-        .category-yellow { background-color: #f9df6d; }
-        .category-green { background-color: #a0c35a; }
-        .category-blue { background-color: #b0c4ef; }
-        .category-purple { background-color: #ba81c5; }
-
-        .tile {
-            aspect-ratio: 1 / 1;
-            transition: all 0.1s ease-in-out;
-            user-select: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .fade-in {
+            animation: fadeIn 1.5s ease-in forwards;
         }
 
-        .tile:active {
-            transform: scale(0.95);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .tile-selected {
-            background-color: #5a594e !important;
-            color: white !important;
-        }
-
-        .shake {
-            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
-        }
-
-        @keyframes shake {
-            10%, 90% { transform: translate3d(-1px, 0, 0); }
-            20%, 80% { transform: translate3d(2px, 0, 0); }
-            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-            40%, 60% { transform: translate3d(4px, 0, 0); }
-        }
-
-        .pop {
-            animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes pop {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .prize-btn {
+        /* Styling for the Back Button to match the game */
+        .back-btn {
             border: 2px solid black;
             transition: all 0.2s ease;
             box-shadow: 0 4px 0 0 rgba(0,0,0,1);
         }
-        .prize-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 0 0 rgba(0,0,0,1);
-        }
-        .prize-btn:active {
+        .back-btn:active {
             transform: translateY(2px);
             box-shadow: 0 0px 0 0 rgba(0,0,0,1);
         }
     </style>
 </head>
-<body class="flex flex-col items-center p-4 min-h-screen">
+<body class="flex flex-col items-center min-h-screen">
 
-    <header class="w-full max-w-md border-b pb-4 mb-6 text-center">
-        <h1 class="text-3xl font-bold tracking-tight">Connections - Dania Birthday Edition</h1>
-        <p class="text-gray-600 mt-2">Create four groups of four!</p>
-    </header>
-
-    <main class="w-full max-w-md flex flex-col gap-4">
-        <div id="solved-container" class="flex flex-col gap-2"></div>
-
-        <div id="prize-container" class="hidden opacity-0 transition-opacity duration-500 mb-4">
-            <button onclick="window.location.href='YOUR_LINK_HERE'" class="prize-btn w-full py-4 rounded-xl font-bold text-lg bg-white flex items-center justify-center gap-2">
-                <span>View Your Birthday Prize</span>
-                <span class="text-xl">→</span>
-            </button>
+    <div class="note-card fade-in">
+        <h1 class="text-2xl font-semibold mb-6">Dear Dania,</h1>
+        
+        <div class="space-y-4 leading-relaxed text-gray-700">
+            <p>
+                Happy Birthday! I hope you liked the Connections game. 
+            </p>
+            <p>
+                [Write your personal message here! Tell her something sweet or a funny memory about the categories you chose.]
+            </p>
+            <p>
+                You're the best.
+            </p>
         </div>
 
-        <div id="grid" class="grid grid-cols-4 gap-2">
-            </div>
-
-        <div class="flex justify-center items-center gap-2 mt-4 text-lg">
-            <span>Mistakes remaining: Unlimited, it's your 
-                <span id="bday-text" title="and you're very cute" class="underline decoration-dotted cursor-help font-medium">birthday!</span>
-            </span>
+        <div class="mt-10 pt-6 border-t border-gray-100 italic text-gray-500">
+            With love, <br>
+            [Your Name]
         </div>
+    </div>
 
-        <div class="flex justify-center gap-3 mt-6">
-            <button onclick="shuffleGrid()" class="px-6 py-3 border border-black rounded-full font-bold hover:bg-gray-100 transition">Shuffle</button>
-            <button onclick="deselectAll()" class="px-6 py-3 border border-black rounded-full font-bold hover:bg-gray-100 transition">Deselect All</button>
-            <button id="submit-btn" onclick="handleSubmit()" class="px-6 py-3 border border-black rounded-full font-bold bg-black text-white disabled:opacity-30 disabled:cursor-not-allowed transition" disabled>Submit</button>
-        </div>
+    <div class="mt-8 fade-in" style="animation-delay: 1s;">
+        <button onclick="window.location.href='index.html'" class="back-btn px-6 py-2 bg-white rounded-full font-medium text-sm">
+            ← Back to Game
+        </button>
+    </div>
 
-        <div id="toast" class="fixed top-24 left-1/2 -translate-x-1/2 bg-black text-white px-4 py-2 rounded shadow-lg opacity-0 transition-opacity pointer-events-none z-50">
-            One away...
-        </div>
-    </main>
-
-    <script>
-        const puzzleData = [
-            { level: 'green', category: 'HASAN RAHEEM SONGS', words: ['PEANUT BUTTER', 'WISHES', 'RADHA', 'IDK'] },
-            { level: 'yellow', category: 'PHONETIC NAMES OF REPLY 1988 CHARACTERS', words: ['BORA BORA', 'DONGLE', 'TACK', 'NOEL'] },
-            { level: 'blue', category: 'PLACES IN PESHAWAR YOU LIKE', words: ['SETHI', 'QISSA', 'HISAAR', 'GOR'] },
-            { level: 'purple', category: 'FRIENDS WITH LETTERS REARRANGED/ADDED/REMOVED', words: ['SANAM', 'SHEER', 'MAROON', 'ME HOON NA'] },
-        ];
-
-        let words = puzzleData.flatMap(group => group.words);
-        let selectedWords = [];
-        let solvedGroups = [];
-        let isGameOver = false;
-
-        const gridEl = document.getElementById('grid');
-        const submitBtn = document.getElementById('submit-btn');
-        const toast = document.getElementById('toast');
-        const solvedContainer = document.getElementById('solved-container');
-        const prizeContainer = document.getElementById('prize-container');
-
-        function init() {
-            shuffleArray(words);
-            renderGrid();
-        }
-
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-
-        function renderGrid() {
-            gridEl.innerHTML = '';
-            words.forEach(word => {
-                const button = document.createElement('div');
-                button.className = `tile bg-[#efefe6] rounded-md p-2 text-center text-[10px] sm:text-xs font-bold cursor-pointer uppercase leading-tight transition-colors`;
-                if (selectedWords.includes(word)) {
-                    button.classList.add('tile-selected');
-                }
-                button.innerText = word;
-                button.onclick = () => handleTileClick(word);
-                gridEl.appendChild(button);
-            });
-            updateSubmitButton();
-        }
-
-        function handleTileClick(word) {
-            if (isGameOver) return;
-            if (selectedWords.includes(word)) {
-                selectedWords = selectedWords.filter(w => w !== word);
-            } else if (selectedWords.length < 4) {
-                selectedWords.push(word);
-            }
-            renderGrid();
-        }
-
-        function updateSubmitButton() {
-            submitBtn.disabled = selectedWords.length !== 4;
-        }
-
-        function showToast(msg) {
-            toast.innerText = msg;
-            toast.classList.add('opacity-100');
-            setTimeout(() => toast.classList.remove('opacity-100'), 2000);
-        }
-
-        function handleSubmit() {
-            if (selectedWords.length !== 4 || isGameOver) return;
-
-            const matchedGroup = puzzleData.find(group => 
-                group.words.every(word => selectedWords.includes(word))
-            );
-
-            if (matchedGroup) {
-                handleSuccess(matchedGroup);
-            } else {
-                const isOneAway = puzzleData.some(group => {
-                    const matchCount = group.words.filter(w => selectedWords.includes(w)).length;
-                    return matchCount === 3;
-                });
-                handleFailure(isOneAway);
-            }
-        }
-
-        function handleSuccess(group) {
-            solvedGroups.push(group);
-            words = words.filter(w => !group.words.includes(w));
-            selectedWords = [];
-            
-            const solvedRow = document.createElement('div');
-            solvedRow.className = `category-${group.level} w-full py-4 px-2 rounded-md flex flex-col items-center justify-center pop mb-2`;
-            solvedRow.innerHTML = `
-                <span class="font-bold text-sm uppercase">${group.category}</span>
-                <span class="text-xs uppercase mt-1">${group.words.join(', ')}</span>
-            `;
-            solvedContainer.appendChild(solvedRow);
-
-            renderGrid();
-            
-            if (solvedGroups.length === 4) {
-                isGameOver = true;
-                triggerWin();
-            }
-        }
-
-        function triggerWin() {
-            // Confetti Blast!
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#f9df6d', '#a0c35a', '#b0c4ef', '#ba81c5']
-            });
-
-            setTimeout(() => {
-                prizeContainer.classList.remove('hidden');
-                setTimeout(() => prizeContainer.classList.add('opacity-100'), 10);
-                showToast("Happy Birthday Dania!");
-            }, 800);
-        }
-
-        function handleFailure(oneAway) {
-            gridEl.classList.add('shake');
-            setTimeout(() => gridEl.classList.remove('shake'), 400);
-
-            if (oneAway) showToast("One away...");
-            else showToast("Not quite!");
-        }
-
-        function shuffleGrid() {
-            if (isGameOver) return;
-            shuffleArray(words);
-            renderGrid();
-        }
-
-        function deselectAll() {
-            if (isGameOver) return;
-            selectedWords = [];
-            renderGrid();
-        }
-
-        // Mobile-friendly tooltip trigger
-        document.getElementById('bday-text').addEventListener('click', function() {
-            alert(this.title);
-        });
-
-        init();
-    </script>
 </body>
 </html>
